@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>排序算法</title>
+    </head>
+    <body>
+        <script>
+            function bubble(arr){
+                // 比较数组的任意相邻项，将较大的项交换到后面
+                // 每一轮比较后，最大的项被放在最后一位
+                // 进行第二轮比较，将第二大的项放在倒数第二位
+
+                // 直接对数组的项进行比较
+                let len = arr.length;
+                for(let i = 0; i<len; i++){
+                    for(let j = 0; j<len-1-i; j++){
+                        if(arr[j]>arr[j+1]){
+                            let temp = arr[j];
+                            arr[j] = arr[j+1];
+                            arr[j+1] = temp;
+                        }
+                    }
+                }
+
+                return arr;
+            }
+
+            function select(arr){
+                // 每一轮选择一个最小的数依次放到数组首
+
+                // 记录最小项的下标
+                let len = arr.length,
+                    minIndex;
+                for(let i=0; i<len; i++){
+                    minIndex = i;
+                    for(let j=i; j<len;j++){
+                        if (arr[j]<arr[minIndex]){
+                            minIndex = j;
+                        }
+                    }
+
+                    if(minIndex !== i){
+                        let temp = arr[minIndex];
+                            arr[minIndex] = arr[i];
+                            arr[i] = temp;
+                    }
+                }
+
+                return arr;
+            }
+
+            function insert(arr){
+                // 将待排序项和已排序项比较，插入到左小右大的位置
+                // 默认第一项已排序
+                let len = arr.length,
+                    j,
+                    temp;
+                for(let i = 1; i<len; i++){
+                    j = i;
+                    temp = arr[i]
+                    while(j>0 && arr[j-1]>temp){
+                        arr[j] = arr[j-1];
+                        j--;
+                    }
+                    arr[j] = temp;
+                }
+
+                return arr;
+            }
+
+            // 归并排序
+            function mergerSort(arr){
+                return mergerSortRec(arr);
+            }
+            // 将待数组分为小数组
+            function mergerSortRec(arr){
+                if(arr.length === 1){
+                    return arr;
+                }
+                let mid = Math.floor(arr.length/2),
+                    arrLeft = arr.slice(0,mid),
+                    arrRight = arr.slice(mid,arr.length);
+                
+                return merger(mergerSortRec(arrLeft),mergerSortRec(arrRight));
+            }
+            // 再将小数组归并为一个数组，在归并的过程中排序
+            function merger(left, right){
+                let res = [],
+                    ir = 0, 
+                    il = 0;
+                while(il < left.length && ir < right.length){
+                    if(left[il]<right[ir]){
+                        res.push(left[il++]);
+                    }else{
+                        res.push(right[ir++]);
+                    }
+                };
+                while(il < left.length){
+                    res.push(left[il++]);
+                };
+                while(ir < right.length){
+                    res.push(right[ir++]);
+                }
+
+                return res;
+            }
+
+            // 快速排序
+            // 主元：中间
+            // 把小于主元的项放到主元前面，大于主元的项放到主元后面
+            // 再对主元前面的数组进行快排
+            function quickSort(arr){
+                quick(arr,0,arr.length-1);
+                return arr;
+            }
+            function quick(arr,left,right){
+                if(arr.length > 1){ // 递归停止条件
+                    let mid = paritition(arr,left,right);
+                    if(mid-1 > left){
+                        quick(arr,left,mid-1);
+                    };
+                    if(mid < right){
+                        quick(arr,mid,right);
+                    };
+                }
+            }
+            function paritition(arr,left,right){
+                let p = arr[Math.floor((left+right)/2)]; // 选中间项为主元
+                // let p = arr[left]; // 选第一项为主元
+                document.writeln(p+'：'+'['+left+','+right+']，'+arr+'</br>');
+                while(left <right){ // 
+                    while(arr[left] < p){
+                        left++;
+                    }
+                    while(arr[right] > p){
+                        right--;
+                    }
+                    if(left <= right){ //
+                        document.writeln('交换'+arr[left]+'，'+arr[right]+'</br>');
+                        let temp = arr[left];
+                        arr[left] = arr[right];
+                        arr[right] = temp;
+                        left++;
+                        right--;
+                    }
+                }
+                document.writeln('['+left+','+right+']，'+arr+'</br></br>');
+                return left;
+            }
+
+
+            // document.writeln('冒泡排序：'+ qs(arr)+ '</br></br>');
+            document.writeln('======================'+ '</br>');
+
+            var arr = [5,4,3,7,6,1];
+            document.writeln('待排序：'+ arr + '</br>');
+            document.writeln('冒泡排序：'+ bubble(arr)+ '</br></br>');
+            document.writeln('======================'+ '</br>');
+
+            var arr = [5,4,3,7,6,1];
+            document.writeln('待排序：'+ arr + '</br>');
+            document.writeln('选择排序：'+ select(arr)+ '</br></br>');
+            document.writeln('======================'+ '</br>');
+
+
+            var arr = [5,4,3,7,6,1];
+            document.writeln('待排序：'+ arr + '</br>');
+            document.writeln('插入排序：'+ insert(arr)+ '</br></br>');
+            document.writeln('======================'+ '</br>');
+
+
+            var arr = [5,4,3,7,6,1];
+            document.writeln('待排序：'+ arr + '</br>');
+            document.writeln('归并排序：'+ mergerSort(arr)+ '</br></br>');
+            document.writeln('======================'+ '</br>');
+
+
+            var arr = [3,2,1,5,6,4];
+            document.writeln('待排序：'+ arr + '</br>');
+            document.writeln('快速排序：'+ quickSort(arr)+ '</br></br>');
+
+        </script>
+    </body>
+</html>
