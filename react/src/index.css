@@ -1,0 +1,13 @@
+.productName,
+.name {
+    display: inline-block;
+    width: 90px
+}
+
+.red {
+    color: red
+}
+
+.hidden {
+    display: none;
+}
