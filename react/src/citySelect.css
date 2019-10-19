@@ -1,0 +1,77 @@
+body {
+    color: #666
+}
+
+.cityInput {
+    width: 300px;
+    height: 30px;
+    margin: 3px;
+    position: relative;
+    border: 1.5px solid gray;
+}
+.cityArea {
+    line-height: 30px;
+    padding-left: 10px;  
+}
+.cityItem {
+    padding: 0 2px;
+    display: inline-block;
+}
+.triangle {
+    border: 8px solid;  
+    position: absolute;
+    right: 10px;
+}
+.Down {
+    top: 40%;
+    border-color: #888 white white white; 
+}
+.Up { 
+    top: 10%;
+    border-color: white white #888  white; 
+}
+
+.cityTable {
+    width: 500px;
+    height: 400px;
+    margin: 3px;
+    padding: 15px;
+    position: relative;
+    border: 1.5px solid gray;
+}
+
+.Search input {
+    width: 300px;
+    height: 30px;
+    margin: 3px;
+    padding-left: 10px;
+    border: 1.5px solid gray;
+    font-size: 16px;
+}
+
+.citySelected {
+    height: 40px;
+}
+.citySelected span {
+    line-height: 40px;
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+.citySelectedItem:hover {
+    color: blue;
+}
+.citySelected .blue {
+    color: rgb(17, 144, 153);
+    border-bottom: 4px solid  rgb(17, 144, 153);
+}
+
+.cityBox {
+    border-top: 1.5px solid gray;
+    padding: 10px 0;
+}
+.cityBox .cityBoxItem {
+    float: left;
+    padding: 3px 0;
+    min-width: 160px;
+}
