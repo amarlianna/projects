@@ -2,9 +2,9 @@ import React from 'react';
 // import './style.css';
 import 'antd/dist/antd.css'; 
 import { Input, List } from 'antd';
-import store from './store';
-import { changeInputValue, addTodoItem, deleteItem, getTodoList, initListAction, getInitList } from './store/actionCreators';
-import axios from 'axios';
+import store from './storev1';
+import { changeInputValue, addTodoItem, deleteItem, getTodoList, initListAction, getInitList } from './storev1/actionCreators';
+// import axios from 'axios';
 
 class TodoList extends React.Component {
   constructor(props) {

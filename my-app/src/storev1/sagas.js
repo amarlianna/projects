@@ -3,9 +3,13 @@ import axios from 'axios';
 import { initListAction } from './actionCreators';
 
 function* initList() {
-  const res = yield axios.get('http://mock-api.com/9n6154gV.mock/api/todolist');
-  const action = initListAction(res.data);
-  yield put(action);
+  try {
+    const res = yield axios.get('http://mock-api.com/9n6154gV.mock/api/todolist');
+    const action = initListAction(res.data);
+    yield put(action);
+  } catch(e) {
+
+  }
 }
 
 function* todoSagas() {
