@@ -4,19 +4,56 @@
     <meta charset="UTF-8" />
     <title>Hello React</title>
     <link rel="stylesheet" type="text/css" href="./index.css">
-    <link rel="stylesheet" type="text/css" href="./citySelect.css">
     
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-    
-    <!-- Don't use this in production: -->
-    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="root"></div>
-    
     <!-- <script src="../like_button.js"></script> -->
     <!-- <script src="../data_table.js"></script> -->
-    <script src="../citySelect.js"></script>
+    <!-- <script src="../citySelect.js"></script> -->
+<script type="text/babel">
+class LoggingButton1 extends React.Component {
+  // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+  // 注意: 这是 *实验性* 语法。
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+
+class LoggingButton extends React.Component {
+  handleClick(id, e, test) {
+    console.log('id is:', id);
+    console.log('e is:', e);
+    console.log('test is:', test);
+  }
+
+  render() {
+    // 此语法确保 `handleClick` 内的 `this` 已被绑定。
+    const id = 1;
+    console.log('render',this)
+    return (
+      <button onClick={this.handleClick.bind(this, id)}>
+        Click me
+      </button>
+    );
+  }
+}
+
+ReactDOM.render(
+  <input defaultValue='wy' />,
+  document.getElementById('root')
+);
+    </script>
   </body>
 </html>
